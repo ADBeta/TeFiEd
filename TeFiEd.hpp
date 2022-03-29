@@ -5,9 +5,9 @@
 
 	See documentation file(s) for information and examples
 	
-	Version 0.99
+	Version 1.01
 	Written by ADBeta
-	Last Modified 26 Mar 2022
+	Last Modified 27 Mar 2022
 */
 
 /* IMPLIMENTATION NOTES */
@@ -38,21 +38,23 @@ class TeFiEd {
 	TeFiEd(const char*);
 	
 	/* Configuration variables */
-	#define MAX_RAM_BYTES 2097152 //2MB 	
-	#define MAX_STRING_SIZE 50
+	size_t MAX_RAM_BYTES = 2097152; //2MB 	
+	size_t MAX_STRING_SIZE = 250;
+	bool VERBOSE = false;
 	
 	/** Low level File Functions **/
 	//Flushes and shrinks vector
 	void flush();
-	
 	//Compute and return the size in bytes used by the ram vector
-	unsigned long getRAMBytes();
+	size_t bytes();
+	//Return number of elements in the vector
+	size_t lines();
 	
 	/** Basic I/O Functions **/
 	//Read all text until RAM Limit into vector
 	int read();
-	//TODO Test function. prints vector
-	void print();
+	//returns the index requested line
+	std::string getLine(size_t);
 	//Overwrites the file with the RAM vector
 	int overwrite();
 	//Writes the RAM vector out to a referenced file object
@@ -62,15 +64,15 @@ class TeFiEd {
 	//Appends a line of text to the end of the vector
 	int appendLine(const std::string);
 	//Appends a string the the end of a line, at index
-	int appendString(unsigned int, const std::string);
+	int appendString(const std::string, size_t);
 	
 	//Inserts a line of text into the vector at index
-	int insertLine(unsigned int, const std::string);
+	int insertLine(const std::string, size_t);
 	//Inserts a string of text, line index and start pos index
-	int insertString(unsigned int, unsigned int, const std::string);
+	int insertString(const std::string, size_t, size_t);
 	
 	//Remov ethe specified line from vector
-	int removeLine(unsigned int);
+	int removeLine(size_t);
 	
 	private:
 	const char* m_filename; //Filename as char array
@@ -81,7 +83,19 @@ class TeFiEd {
 	void resetAndClose();
 	
 	//Perform sanity checks on input string and if it will exceed max size
-	int sanitiseInputString(std::string, size_t);
+	//checkString("string under test", "caller function name");
+	int checkString(std::string, std::string);
+	
+	//Print a standardized error message. Sloppy. Might re-work but works.
+	//Three message input
+	template <typename T1, typename T2, typename T3>
+	void errorMsg(std::string, T1, T2, T3);
+	//Two message input
+	template <typename T1, typename T2>
+	void errorMsg(std::string, T1, T2);
+	//One message input
+	template <typename T1>
+	void errorMsg(std::string, T1);
 };
 
 #endif
