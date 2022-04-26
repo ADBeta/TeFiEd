@@ -1,10 +1,8 @@
-#include "TeFiEd.hpp"
+#include "TeFiEd.h"
 
 #include <fstream>
 #include <iostream>
 #include <string>
-
-//TODO review code for efficiency
 
 /** System Functions **/
 TeFiEd::TeFiEd(const char* inputfn) {
