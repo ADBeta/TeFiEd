@@ -135,7 +135,7 @@ and less bloated sub-system
 * 3.0.1 - Added better usage notes, merged API_USAGE.md
 * 3.0.2 - Added a destructor
 * 3.0.2 - Added create() and isOpen()
-
+* 3.1.2 - Added findFirst() and findNext() functions.
 
 
 

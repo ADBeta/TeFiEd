@@ -21,7 +21,7 @@ TeFiEd::TeFiEd(const char* ip_filename) {
 	m_filename = ip_filename;
 }
 
-//Destructor
+//Destructor cleans up the vector and oher RAM garbage disposal.
 TeFiEd::~TeFiEd() {	
 	if(m_ramfile.size() != 0) {
 		this->flush();
@@ -350,7 +350,6 @@ int TeFiEd::removeLine(size_t index) {
 /** Internal only functions ***************************************************/
 //Checks the validity of a passed string, and if it will exceed the failsafes
 int TeFiEd::checkString(std::string testString) {
-	
 	//Check the number of chars in the input doesn't exceed MAX_STRING_SIZE
 	size_t stringSize = testString.size();
 	
@@ -358,7 +357,7 @@ int TeFiEd::checkString(std::string testString) {
 		errorMsg("Input string exceeds MAX_STRING_SIZE :",
 			MAX_STRING_SIZE);
 		
-		return -1;
+		return 1;
 	}
 	
 	//Check if adding the input string to RAM File will cause a RAM failsafe.
@@ -367,7 +366,7 @@ int TeFiEd::checkString(std::string testString) {
 		errorMsg("String addition causes file to exceed MAX_RAM_BYTES :",
 			MAX_RAM_BYTES);
 		
-		return -2;
+		return 2;
 	}
 	
 	//Otherwise exit with pass
