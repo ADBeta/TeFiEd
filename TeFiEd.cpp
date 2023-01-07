@@ -7,7 +7,7 @@
 * Please see the github page for this project: https://github.com/ADBeta/TeFiEd
 * 
 * (c) ADBeta 
-* v3.0.2
+* v3.1.2
 * Last Modified 7 Jan 2023
 */
 
@@ -345,6 +345,63 @@ int TeFiEd::removeLine(size_t index) {
 	
 	//Return success
 	return 0;
+}
+
+size_t TeFiEd::findFirst(std::string search) {
+	size_t lineCount = lines() + 1; //Get how many lines there are in the vector
+	
+	//Search through each of them until we match the search string
+	for(size_t cLine = 1; cLine < lineCount; cLine++) {
+		std::string lineStr = getLine(cLine);
+		
+		//When current line contains the search string
+		if(lineStr.find(search) != std::string::npos) {
+			return cLine;//Return the current line number
+		}
+	}
+	
+	//If no line matches, then return 0.
+	return 0;
+}
+
+size_t TeFiEd::findNext(std::string search) {
+	/*** Setup ***/
+	//Last seach string, when new search string is given, reset to beginning
+	static std::string lastSearch;
+	//Current line is retained per call. (Init to 1 to prevent random val)
+	static size_t cLine = 0;
+	
+	//If the current and last search don't match, reset the cLine and lastSearch
+	if(search != lastSearch) {
+		cLine = 1;
+		lastSearch = search;
+	}
+	
+	/*** Runtime ***/
+	//Vector line where search is found. Set to 0 to assume no match.
+	size_t matchLine = 0;
+	
+	size_t lineCount = lines() + 1; //Get how many lines there are in the vector
+	while(cLine < lineCount) {
+		//Get current line string
+		std::string lineStr = getLine(cLine);
+		
+		//When current line contains the search string
+		if(lineStr.find(search) != std::string::npos) {
+			//Match line is this line
+			matchLine = cLine;
+			//Inc past this line for the next loop
+			++cLine;
+			//Break the loop to go to the return section
+			break;
+		}
+		
+		//Inc to next line if no match on this line.
+		++cLine;
+	}
+	
+	//Return matchLine. 0 if no match, cLine if matched.
+	return matchLine;
 }
 
 /** Internal only functions ***************************************************/

@@ -83,6 +83,13 @@ class TeFiEd {
 	//Remove the specified line from RAM File.
 	int removeLine(size_t line);
 	
+	//Find the first line containing a string. Return 0 when no match is found.
+	size_t findFirst(std::string);
+	
+	//Find the next instance of a line containing string. Returns 0 when no 
+	//match is found.
+	size_t findNext(std::string);
+	
 	private:
 	/** Configuration variables ***********************************************/
 	//All of the configuration variables can be edited, using API calls.

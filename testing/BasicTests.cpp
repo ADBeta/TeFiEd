@@ -19,18 +19,18 @@ int main() {
 	std::cout << "Filename string is: " << Testfile.filename() << std::endl;
 	
 	/** Create a file from nothing ********************************************/
-	Testfile.create();
+	//Testfile.create();
 	
 	//Test appending line
-	Testfile.appendString("If you can read this, appendString works!");
+	//Testfile.appendString("If you can read this, appendString works!");
 	
 	//Add some text to the first line, at a specific position
-	Testfile.insertToLine(" and insertToLine", 1, 35);
+	//Testfile.insertToLine(" and insertToLine", 1, 35);
 	
 	//Write the RAM file out to the actual file and finish
-	Testfile.overwrite();
+	//Testfile.overwrite();
 	
-	std::cout << "Done writing" << std::endl << std::endl;
+	//std::cout << "Done writing" << std::endl << std::endl;
 
 	/** Open the file and output the line now *********************************/
 
@@ -40,10 +40,15 @@ int main() {
 		return 1;
 	}
 	
+	size_t mL;
+	while((mL = Testfile.findNext("this")) != 0) {
+		std::cout << mL << std::endl;
+	}
+	
 	//Print the first line of the file
-	std::cout << Testfile.getLine(1) << std::endl << std::endl;
+	//std::cout << Testfile.getLine(1) << std::endl << std::endl;
 
-	std::cout << "Basic Tests Finished!" << std::endl;
-		*/
+	//std::cout << "Basic Tests Finished!" << std::endl;
+	
 	return 0;
 }
