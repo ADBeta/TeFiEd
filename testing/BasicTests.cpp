@@ -43,6 +43,6 @@ int main() {
 	std::cout << Testfile.getLine(1) << std::endl << std::endl;
 
 	std::cout << "Basic Tests Finished!" << std::endl;
-	
+		
 	return 0;
 }

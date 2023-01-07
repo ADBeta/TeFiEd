@@ -19,11 +19,13 @@
 class TeFiEd {
 	public:
 	//Object constructor is used to pass the filename.
-	//e.g. TeFiEd file("test.txt");
 	TeFiEd(const char*);
 	
+	//Destructor cleans up RAM.
+	~TeFiEd();
+	
 	/** Configuration Functions ***********************************************/
-	//Sets the verbose flag. See API_USAGE for notes
+	//Sets the verbose flag.
 	void setVerbose(bool verb) { this->verbose = verb; }
 	
 	//Sets the maximum -BYTES- the file can have until failsafe triggers.	
@@ -43,7 +45,7 @@ class TeFiEd {
 	size_t lines();
 	
 	/** Basic Functions *******************************************************/
-	//Reads input file into the RAM file (vector)
+	//Reads input file into the RAM vector
 	int read();
 	
 	//Return the line string at the passed index
@@ -52,8 +54,7 @@ class TeFiEd {
 	//Overwrite the original file with the RAM file
 	int overwrite();
 	
-	//Writes the RAM file out to another TeFiEd Object. See API_USAGE for notes.
-	//TODO
+	//Writes the RAM file out to another TeFiEd Object.
 	int writeTo(TeFiEd &);
 	
 	//Deletes all the data in the RAM File, and shrinks the vector to save space
@@ -83,7 +84,7 @@ class TeFiEd {
 	size_t MAX_RAM_BYTES = 8388608; //8MB 	
 	
 	//Maximum length (in chars) of any one line before failsafe triggets.
-	size_t MAX_STRING_SIZE = 1000;
+	size_t MAX_STRING_SIZE = 5000;
 	
 	//If verbosity is enabled, the API will print updates to std::cout.
 	//Error messages are enabled regardless. 

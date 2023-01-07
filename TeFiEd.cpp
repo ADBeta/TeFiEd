@@ -21,6 +21,13 @@ TeFiEd::TeFiEd(const char* ip_filename) {
 	m_filename = ip_filename;
 }
 
+//Destructor
+TeFiEd::~TeFiEd() {	
+	if(m_ramfile.size() != 0) {
+		this->flush();
+	}
+}
+
 /** File Metadata getters *****************************************************/
 std::string TeFiEd::filename() {
 	//Convert the const char to a string

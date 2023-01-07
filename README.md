@@ -114,9 +114,10 @@ a file checksum without external programs.
 * Add Find Search and Replace functons to the library.  
 * Add a file validity checker instead of Read() in some situations  
 * file.create() call instead of write then read, which can be confusing  
-* deconstructor to handle garbage collection at end of exec.  
+* Make destructor more cleanup oriented.  
+* Change how error messages are called and how they work.  
 
-## Changerlog
+## Changelog
 * 2.5 - Initial release.  
 * 2.6 - Cleared up some logic problems  
 * 2.8 - Added -hasChanged- flag, to make overwrite or writeTo not waste time by  
