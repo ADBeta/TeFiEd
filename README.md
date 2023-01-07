@@ -64,10 +64,17 @@ in the vector.
 `file.lines();`  
 
 <b>General Use Functions</b>  
+To create a blank file. Returns error status.  
+`file.create();`  
+
 To read the file from filename into the RAM vector, call read(). This will return  
 non-zero upon error. A return of 1 indicates a general failure, and will print an  
 error message.  
 `file.read();`  
+
+Another option to check if the file is open - better option is checking return  
+status of the read() function - is to call the isOpen function.  
+`file.isOpen();`  
 
 To get the string held at line n, call getLine(n). The first index is 1, this is  
 done as it makes more sense in the context of a text editor. A request for n=0  
@@ -107,27 +114,30 @@ Remove or delete line from the vector. Returns error status.
 	
 ## TODO
 * Add checksum function, to detect changes to the file, and to output  
-a file checksum without external programs.  
-* Refactor some interal checks such as .isOpen() for more safeties  
-* Add full unicode support - std::strings and size don't support > 8bit chars  
-* Do write out speed tests, e.g. Bytes Per Second (avg) and 1024 byte speed.  
-* Add Find Search and Replace functons to the library.  
-* Add a file validity checker instead of Read() in some situations  
-* file.create() call instead of write then read, which can be confusing  
-* Make destructor more cleanup oriented.  
-* Change how error messages are called and how they work.  
+a file checksum without external programs.
+* Add full unicode support - std::strings and size don't support > 8bit chars
+* Add Find Search and Replace functons to the library.
+* Add a file validity checker instead of Read() in some situations
+* file.create() call instead of write then read, which can be confusing
+* Make destructor more cleanup oriented.
+* Change how error messages are called and how they work.
 
 ## Changelog
-* 2.5 - Initial release.  
-* 2.6 - Cleared up some logic problems  
+* 2.5 - Initial release.
+* 2.6 - Cleared up some logic problems
 * 2.8 - Added -hasChanged- flag, to make overwrite or writeTo not waste time by  
- writing to IO if nothing needs to be changed  
-* 2.9 - Added some extra features to the object (eg filename print and TODO  
+ writing to IO if nothing needs to be changed
+* 2.9 - Added some extra features to the object (eg filename print and TODO
 * *** - Added a testing branch to test and play around with the features and  
-functions of the library.  
+functions of the library.
 * 3.0 - Changed how a lot of the functions work in order to make a simpler API  
 and less bloated sub-system
 * 3.0.1 - Added better usage notes, merged API_USAGE.md
+* 3.0.2 - Added a destructor
+* 3.0.2 - Added create() and isOpen()
+
+
+
 
 ## Licence
 This software is under the GPL (GPL3.0), please see LICENCE for information  

@@ -45,8 +45,15 @@ class TeFiEd {
 	size_t lines();
 	
 	/** Basic Functions *******************************************************/
+	//Creates an empty file from the filename
+	int create();
+	
 	//Reads input file into the RAM vector
 	int read();
+	
+	//Returns if the file is open correctly. Preferably check return status of 
+	//read(), but this is an okay second option.
+	bool isOpen();
 	
 	//Return the line string at the passed index
 	std::string getLine(size_t);
@@ -94,6 +101,9 @@ class TeFiEd {
 	const char* m_filename; //Filename as char array
 	std::fstream m_file; //fsteam object of file
 	std::vector<std::string> m_ramfile; //File RAM vector	
+	
+	//Flag to see if the file is open successfully.
+	bool isOpenFlag = false;
 	
 	/** Internal use functions ************************************************/
 	//Reset flags/bits then close the file

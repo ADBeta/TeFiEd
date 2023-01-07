@@ -19,6 +19,7 @@ int main() {
 	std::cout << "Filename string is: " << Testfile.filename() << std::endl;
 	
 	/** Create a file from nothing ********************************************/
+	Testfile.create();
 	
 	//Test appending line
 	Testfile.appendString("If you can read this, appendString works!");
@@ -43,6 +44,6 @@ int main() {
 	std::cout << Testfile.getLine(1) << std::endl << std::endl;
 
 	std::cout << "Basic Tests Finished!" << std::endl;
-		
+		*/
 	return 0;
 }

@@ -7,8 +7,8 @@
 * Please see the github page for this project: https://github.com/ADBeta/TeFiEd
 * 
 * (c) ADBeta 
-* v3.0.0
-* Last Modified 26 Nov 2022
+* v3.0.2
+* Last Modified 7 Jan 2023
 */
 
 #include "TeFiEd.h"
@@ -64,6 +64,28 @@ size_t TeFiEd::lines() {
 }
 
 /** Basic Functions ***********************************************************/
+//Create empty file from filename
+int TeFiEd::create() {
+	//Open file as output, truncate
+	this->m_file.open(m_filename, std::ios::out | std::ios::trunc);
+	
+	//Make sure file is open and exists
+	if(m_file.is_open() == 0) { 
+		errorMsg("create", "Could not create file");
+		return 1;
+	}
+		
+	//Close file and clear flags
+	resetAndClose();
+	
+	//If verbosity is enabled, print a nice message
+	if(this->verbose == true) {
+		std::cout << "Create " << m_filename << " Successful" << std::endl;
+	}
+	
+	return 0;
+}
+
 //Read file into RAM File. Includes byte and line length failsafe
 int TeFiEd::read() {
 	//Flush the vector
@@ -115,8 +137,14 @@ int TeFiEd::read() {
 		  << " bytes, " << this->lines() << " lines." << std::endl;
 	}
 	
+	isOpenFlag = true;
 	//Success
 	return 0;
+}
+
+bool TeFiEd::isOpen() {
+	isOpenFlag = m_file.is_open();	
+	return isOpenFlag;
 }
 
 std::string TeFiEd::getLine(size_t index) {
@@ -125,7 +153,6 @@ std::string TeFiEd::getLine(size_t index) {
 		--index;
 	}
 	
-	//TODO Segfaults if file isn't open. add failsafe
 	if(index > this->m_ramfile.size() - 1) {
 		errorMsg("getLine", "Line", index + 1, "does not exist");
 		
@@ -355,6 +382,8 @@ void TeFiEd::resetAndClose() {
 	m_file.seekg(0, std::ios::beg);
 	//Close file
 	m_file.close();
+	
+	isOpenFlag = false;
 }
 
 /** Error Message *************************************************************/
