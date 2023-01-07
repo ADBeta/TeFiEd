@@ -111,6 +111,15 @@ Inserts a string to the vector at line index and start pos index.
 	
 Remove or delete line from the vector. Returns error status.  
 `file.removeLine(size_t line);`  
+
+This finds the first instance of a string inside the vector and return its line  
+index number. Returns 0 if no match is found.  
+`file.findFirst(std::string search);`
+
+This finds the first, then next instance of a string on subsequent calls.  
+Returns 0 when no match is found, and resets to start of the vector when the  
+search string is different.  
+`file.findNext(std::string search);`  
 	
 ## TODO
 * Add checksum function, to detect changes to the file, and to output  
@@ -136,8 +145,6 @@ and less bloated sub-system
 * 3.0.2 - Added a destructor
 * 3.0.2 - Added create() and isOpen()
 * 3.1.2 - Added findFirst() and findNext() functions.
-
-
 
 ## Licence
 This software is under the GPL (GPL3.0), please see LICENCE for information  
