@@ -16,7 +16,8 @@ int main() {
 	//Enable verbosity
 	Testfile.setVerbose(true);
 	//Print the filename to aid user finding the file, and to confirm function.
-	std::cout << "Filename string is: " << Testfile.filename() << std::endl;
+	std::cout << "Filename string is: " << Testfile.filename() << 
+	  "\tc  format string is: " << Testfile.filename_c_str() << std::endl;
 	
 	/** Create a file from nothing ********************************************/
 	//Testfile.create();
