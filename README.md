@@ -145,7 +145,7 @@ and less bloated sub-system
 * 3.0.2 - Added a destructor
 * 3.0.2 - Added create() and isOpen()
 * 3.1.2 - Added findFirst() and findNext() functions.
-* 3.2.3 - Added a filename_c_str() function to get the filename in c string format.  
+* 3.2.2 - Added a filename_c_str() function to get the filename in c string format.  
 
 ## Licence
 This software is under the GPL (GPL3.0), please see LICENCE for information  
