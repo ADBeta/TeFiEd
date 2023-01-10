@@ -130,6 +130,8 @@ a file checksum without external programs.
 * file.create() call instead of write then read, which can be confusing
 * Make destructor more cleanup oriented.
 * Change how error messages are called and how they work.
+* Change isOpen to exists flag and make it more trustworthy
+* Add replace function
 
 ## Changelog
 * 2.5 - Initial release.
