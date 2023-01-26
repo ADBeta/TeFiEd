@@ -114,41 +114,39 @@ Remove or delete line from the vector. Returns error status.
 
 This finds the first instance of a string inside the vector and return its line  
 index number. Returns 0 if no match is found.  
-`file.findFirst(std::string search);`
+`file.findFirstLine(std::string search);`
+
+Find the first instance of a string that matches, but can offset the start line.  
+offset defaults to 1.
+`file.findLine(std::string search, size_t offset = 1);`  
 
 This finds the first, then next instance of a string on subsequent calls.  
 Returns 0 when no match is found, and resets to start of the vector when the  
 search string is different.  
-`file.findNext(std::string search);`  
+`file.findNextLine(std::string search);`  
 	
 ## TODO
 * Add checksum function, to detect changes to the file, and to output  
 a file checksum without external programs.
 * Add full unicode support - std::strings and size don't support > 8bit chars
-* Add Find Search and Replace functons to the library.
 * Add a file validity checker instead of Read() in some situations
-* file.create() call instead of write then read, which can be confusing
-* Make destructor more cleanup oriented.
 * Change how error messages are called and how they work.
 * Change isOpen to exists flag and make it more trustworthy
 * Add replace function
 
 ## Changelog
 * 2.5 - Initial release.
-* 2.6 - Cleared up some logic problems
-* 2.8 - Added -hasChanged- flag, to make overwrite or writeTo not waste time by  
- writing to IO if nothing needs to be changed
-* 2.9 - Added some extra features to the object (eg filename print and TODO
-* *** - Added a testing branch to test and play around with the features and  
-functions of the library.
 * 3.0 - Changed how a lot of the functions work in order to make a simpler API  
 and less bloated sub-system
-* 3.0.1 - Added better usage notes, merged API_USAGE.md
 * 3.0.2 - Added a destructor
 * 3.0.2 - Added create() and isOpen()
 * 3.1.2 - Added findFirst() and findNext() functions.
 * 3.2.2 - Added a filename_c_str() function to get the filename in c string format.  
 * 3.3.2 - Added a parentDir() function to return the parent directory of the file  
+* 4.0.1 - Added convertLineEnding() to convert between DOS (CR/LF) and Unix (LF)  
+line ending types.
+* 4.1.1 - Extended the find functionality, to include find with offet to allow  
+similar functionality to std::string.find() 
 
 ## Licence
 This software is under the GPL (GPL3.0), please see LICENCE for information  
