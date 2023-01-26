@@ -16,6 +16,13 @@
 #include <string>
 #include <vector>
 
+/*** Enum and types ***********************************************************/
+//Line ending type, for convertLineEnding
+enum t_LINE_END{ le_DOS, le_Unix };
+
+
+
+/*** TeFiEd class *************************************************************/
 class TeFiEd {
 	public:
 	//Object constructor is used to pass the filename.
@@ -75,6 +82,9 @@ class TeFiEd {
 	void flush();
 	
 	/** File Editing Functions ************************************************/
+	//Convert RAM vector Line Ending stype to DOS or Unix (Pass string
+	void convertLineEnding(t_LINE_END);
+	
 	//Appends a string to the end of the RAM File
 	int appendString(const std::string);
 	
@@ -90,12 +100,16 @@ class TeFiEd {
 	//Remove the specified line from RAM File.
 	int removeLine(size_t line);
 	
+	//Find the first line containing a string, Pass an offset int, to start from
+	//that line instead of the first line (default first line)
+	size_t findLine(std::string, size_t offset = 1);
+	
 	//Find the first line containing a string. Return 0 when no match is found.
-	size_t findFirst(std::string);
+	size_t findFirstLine(std::string);
 	
 	//Find the next instance of a line containing string. Returns 0 when no 
 	//match is found.
-	size_t findNext(std::string);
+	size_t findNextLine(std::string);
 	
 	private:
 	/** Configuration variables ***********************************************/

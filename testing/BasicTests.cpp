@@ -33,18 +33,22 @@ int main() {
 	
 	//std::cout << "Done writing" << std::endl << std::endl;
 
-	/** Open the file and output the line now *********************************/
-
+	/** Open the file *********************************************************/
 	//Open and read in the test file
 	if(Testfile.read() != 0) {
 		std::cout << "File did not open correctly. exiting" << std::endl;
 		return 1;
 	}
 	
-	size_t mL;
-	while((mL = Testfile.findNext("this")) != 0) {
-		std::cout << mL << std::endl;
-	}
+	//Convert the input file to Unix Line ending style
+	//Testfile.convertLineEnding(le_DOS);
+	
+	//Find function tests. Find the first line that matches, offset to line 10
+	size_t matchLine = Testfile.findLine("TRACK", 10);
+	std::cout << "Matched line: " << matchLine << "   " << 
+	          Testfile.getLine(matchLine) << std::endl;
+	
+	//Testfile.overwrite();
 	
 	//Print the first line of the file
 	//std::cout << Testfile.getLine(1) << std::endl << std::endl;
