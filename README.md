@@ -97,6 +97,10 @@ quickly handle the garbage collection.
 `file.flush();`  
 	
 <b>File Editing Functions</b>  
+Convert the line ending type from DOS (\r\n or CR/LF) to Unix (\n or LF), or  
+vice verse.  
+`file.convertLineEnding(t_LINE_END type);    //le_Unix and le_DOS t_LINE_END`
+
 Append a string to the end of the RAM vector. Returns error status.  
 `file.appendString(const std::string);`  
 
@@ -108,7 +112,7 @@ Inserts a line of text into the vector at index line. Returns error status.
 	
 Inserts a string to the vector at line index and start pos index.  
 `file.insertToLine(const std::string, size_t line, size_t pos);`  
-	
+
 Remove or delete line from the vector. Returns error status.  
 `file.removeLine(size_t line);`  
 
