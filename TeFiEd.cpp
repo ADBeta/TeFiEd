@@ -7,8 +7,8 @@
 * Please see the github page for this project: https://github.com/ADBeta/TeFiEd
 * 
 * (c) ADBeta 
-* v4.1.1
-* Last Modified 26 Jan 2023
+* v4.2.1
+* Last Modified 27 Jan 2023
 */
 
 #include "TeFiEd.h"
@@ -405,6 +405,47 @@ int TeFiEd::removeLine(size_t index) {
 	
 	//Return success
 	return 0;
+}
+
+std::string TeFiEd::getWord(const size_t line, unsigned int index) {
+	//If index is 0, set it to 1. always 1 indexed
+	if(index == 0) index = 1;
+	
+	//Set the delim string 
+	const std::string delim = ".,:; ";
+	
+	//Get the curent line string
+	std::string input, output;
+	input = this->getLine(line);
+	
+	size_t wordStart = 0, wordEnd = 0, wordIndex = 0;
+	
+	//Find the start and end of a word
+	do {
+		//Get the start and end of a word, detected by delim
+		wordStart = input.find_first_not_of(delim, wordEnd);	
+		wordEnd = input.find_first_of(delim, wordStart);
+		
+		//wordEnd can be allowed to overflow, but wordStart cannot.
+		if(wordStart != std::string::npos) {
+			//Incriment word index.
+			++wordIndex;
+			
+			//If this index is the one requested, set output
+			if(wordIndex == index) {
+				output = input.substr(wordStart, wordEnd - wordStart);
+				break;
+			}
+		}
+	
+	} while(wordStart < input.size());	
+	
+	//If the index could not be found, return an empty string
+	if(wordIndex < index) {
+		output = "";
+	}
+	
+	return output;
 }
 
 size_t TeFiEd::findLine(std::string search, size_t offset) {

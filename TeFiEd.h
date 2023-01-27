@@ -20,8 +20,6 @@
 //Line ending type, for convertLineEnding
 enum t_LINE_END{ le_DOS, le_Unix };
 
-
-
 /*** TeFiEd class *************************************************************/
 class TeFiEd {
 	public:
@@ -100,6 +98,10 @@ class TeFiEd {
 	//Remove the specified line from RAM File.
 	int removeLine(size_t line);
 	
+	//Gets a word at index, from line number and returns it. Indexed from 1, 
+	//and returns an empty string on failure
+	std::string getWord(const size_t line, unsigned int index);
+	
 	//Find the first line containing a string, Pass an offset int, to start from
 	//that line instead of the first line (default first line)
 	size_t findLine(std::string, size_t offset = 1);
@@ -133,7 +135,7 @@ class TeFiEd {
 	//Flag to see if the file is open successfully.
 	bool isOpenFlag = false;
 	
-	/** Internal use functions ************************************************/
+	/** Internal use functions ************************************************/	
 	//Reset flags/bits then close the file
 	void resetAndClose();
 	

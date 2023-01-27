@@ -41,7 +41,13 @@ int main() {
 	}
 	
 	//Convert the input file to Unix Line ending style
-	//Testfile.convertLineEnding(le_DOS);
+	Testfile.convertLineEnding(le_Unix);
+	
+	std::cout << Testfile.getWord(2, 0) << std::endl;
+	std::cout << Testfile.getWord(2, 1) << std::endl;
+	std::cout << Testfile.getWord(2, 2) << std::endl;
+	std::cout << Testfile.getWord(2, 3) << std::endl;
+	std::cout << Testfile.getWord(2, 4) << std::endl;
 	
 	//Find function tests. Find the first line that matches, offset to line 10
 	size_t matchLine = Testfile.findLine("TRACK", 10);
