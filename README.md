@@ -116,9 +116,13 @@ Inserts a string to the vector at line index and start pos index.
 Remove or delete line from the vector. Returns error status.  
 `file.removeLine(size_t line);`  
 
+Get -index- word from the line. Indexed from 1, and returns an empty string  
+if the index is invalid.  
+`file.getWord(size_t line, unsigned int index);`  
+
 This finds the first instance of a string inside the vector and return its line  
 index number. Returns 0 if no match is found.  
-`file.findFirstLine(std::string search);`
+`file.findFirstLine(std::string search);`  
 
 Find the first instance of a string that matches, but can offset the start line.  
 offset defaults to 1.
@@ -137,6 +141,8 @@ a file checksum without external programs.
 * Change how error messages are called and how they work.
 * Change isOpen to exists flag and make it more trustworthy
 * Add replace function
+* word count function
+* refactor functions to use const. annoying long work
 
 ## Changelog
 * 2.5 - Initial release.
@@ -151,6 +157,7 @@ and less bloated sub-system
 line ending types.
 * 4.1.1 - Extended the find functionality, to include find with offet to allow  
 similar functionality to std::string.find() 
+* 4.2.1 - Included getWord() function, returns a string with simple delimitation
 
 ## Licence
 This software is under the GPL (GPL3.0), please see LICENCE for information  
