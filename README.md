@@ -143,6 +143,7 @@ a file checksum without external programs.
 * Add replace function
 * word count function
 * refactor functions to use const. annoying long work
+* Monitor getWord performance and update if needed
 
 ## Changelog
 * 2.5 - Initial release.
