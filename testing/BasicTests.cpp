@@ -43,11 +43,24 @@ int main() {
 	//Convert the input file to Unix Line ending style
 	Testfile.convertLineEnding(le_Unix);
 	
-	std::cout << Testfile.getWord(2, 0) << std::endl;
-	std::cout << Testfile.getWord(2, 1) << std::endl;
-	std::cout << Testfile.getWord(2, 2) << std::endl;
-	std::cout << Testfile.getWord(2, 3) << std::endl;
-	std::cout << Testfile.getWord(2, 4) << std::endl;
+	
+	//Go through every word in every line in the file
+	/*
+	std::string cWord;
+	size_t cLine = 1, cIndex = 1;
+	
+	while( cLine <= Testfile.lines() ) {
+		while( (cWord = Testfile.getWord(cLine, cIndex)) != "" ) {
+		
+			std::cout << cWord << std::endl;
+		
+			++cIndex;
+		}
+		
+		cIndex = 1;
+		++cLine;
+	}
+	*/
 	
 	//Find function tests. Find the first line that matches, offset to line 10
 	size_t matchLine = Testfile.findLine("TRACK", 10);
