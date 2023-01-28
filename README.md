@@ -77,8 +77,8 @@ status of the read() function - is to call the isOpen function.
 `file.isOpen();`  
 
 To get the string held at line n, call getLine(n). The first index is 1, this is  
-done as it makes more sense in the context of a text editor. A request for n=0  
-will simply return n=1 to avoid crashing or segfaults.  
+done as it makes more sense in the context of a text editor. Request for line 0  
+will return a blank string.  
 `file.getLine(size_t line);`  
 
 TeFiEd has multiple output options, one option is to write the file to itself,  
@@ -116,9 +116,11 @@ Inserts a string to the vector at line index and start pos index.
 Remove or delete line from the vector. Returns error status.  
 `file.removeLine(size_t line);`  
 
-Get -index- word from the line. Indexed from 1, and returns an empty string  
-if the index is invalid.  
+Get -index- word from the line. There are 2 ways of doing this:  
+Pass line No & index, return string - blank when no match.  
+Pass string & index, return string - blank when no match.  
 `file.getWord(size_t line, unsigned int index);`  
+`file.getWord(std::string input, unsigned int index);`  
 
 This finds the first instance of a string inside the vector and return its line  
 index number. Returns 0 if no match is found.  
@@ -142,7 +144,6 @@ a file checksum without external programs.
 * Change isOpen to exists flag and make it more trustworthy
 * Add replace function
 * word count function
-* refactor functions to use const. annoying long work
 * Monitor getWord performance and update if needed
 
 ## Changelog
@@ -159,6 +160,8 @@ line ending types.
 * 4.1.1 - Extended the find functionality, to include find with offet to allow  
 similar functionality to std::string.find() 
 * 4.2.1 - Included getWord() function, returns a string with simple delimitation
+* 4.3.2 - Added an overload of getWord that takes a string and index.
+* 4.4.2 - Changed params which can be const to const
 
 ## Licence
 This software is under the GPL (GPL3.0), please see LICENCE for information  
