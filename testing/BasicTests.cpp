@@ -6,7 +6,7 @@
 *
 * ADBeta (c) Nov 2022
 *******************************************************************************/
-#include "../TeFiEd.h"
+#include "../TeFiEd.hpp"
 #include <iostream>
 
 //Declare the TeFiEd object
@@ -36,12 +36,14 @@ int main() {
 	/** Open the file *********************************************************/
 	//Open and read in the test file
 	if(Testfile.read() != 0) {
-		std::cout << "File did not open correctly. exiting" << std::endl;
 		return 1;
 	}
 	
+	//Replace line 5
+	Testfile.replace(5, "Woggle");
+	
 	//Convert the input file to Unix Line ending style
-	Testfile.convertLineEnding(le_Unix);
+	//Testfile.convertLineEnding(LineEnding::Unix);
 	
 	
 	//Go through every word in every line in the file
@@ -62,8 +64,13 @@ int main() {
 	}
 	*/
 	
+	//Go through first 10 lines in the file
+	for(size_t line = 1; line <= 10; line++) {
+		std::cout << Testfile.getLine(line) << std::endl;
+	}
+	
 	//Find function tests. Find the first line that matches, offset to line 10
-	size_t matchLine = Testfile.findLine("TRACK", 10);
+	size_t matchLine = Testfile.find("Woggle");
 	std::cout << "Matched line: " << matchLine << "   " << 
 	          Testfile.getLine(matchLine) << std::endl;
 	
