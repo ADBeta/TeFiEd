@@ -35,6 +35,7 @@ line ending types.
 * 4.3.2 - Added an overload of getWord that takes a string and index.
 * 4.6.0 - Created a replace() function]
 * 5.0.0 - Added documentation and altered the API to be easier to understand
+* 5.1.0 - Overloaded TeFiEd constructor to support std::strings
 
 ## Licence
 <b>ADBeta (c) 2023</b>  

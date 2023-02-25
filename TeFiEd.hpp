@@ -8,8 +8,8 @@
 * Please see the github page for this project: https://github.com/ADBeta/TeFiEd
 * 
 * (c) ADBeta 
-* v5.0.0
-* Last Modified 24 Feb 2023
+* v5.1.0
+* Last Modified 25 Feb 2023
 *******************************************************************************/
 
 #ifndef TeFiEd_H

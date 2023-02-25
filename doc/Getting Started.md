@@ -5,7 +5,7 @@ place in your project and include TeFiEd.hpp.
 
 The first step to using TeFiEd is to declare an object and pass the filename.  
 ```C++
-TeFiEd file("filename.extension");`
+TeFiEd file("filename.extension");
 
 file.read();
 ```

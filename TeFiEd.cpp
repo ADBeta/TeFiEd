@@ -15,13 +15,24 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <cstring>
 
-TeFiEd::TeFiEd(const char* ip_filename) {
-	m_filename = ip_filename;
+TeFiEd::TeFiEd(const char* filename) {
+	m_filename = filename;
 }
 
-TeFiEd::TeFiEd(const std::string ip_filename) {
-	m_filename = ip_filename.c_str();
+TeFiEd::TeFiEd(const std::string filename) {
+	//NOTE: this method could be a memory leak area, but this consturctor is
+	//called once per object, and otheriwse would store the string in stack.
+	//Keep an eye on this for leaks, but it should be safe.
+	//Create a char array string of the right size on the heap.
+	char *strPtr = new char[filename.size() + 1];
+
+	//Copy contents from string to the char array
+	strcpy(strPtr, filename.c_str());
+	
+	//Set the pointer to the heap pointer.
+	m_filename = strPtr;
 } 
 
 //Destructor cleans up the vector and oher RAM garbage disposal.
