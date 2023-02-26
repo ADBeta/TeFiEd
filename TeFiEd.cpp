@@ -18,25 +18,25 @@
 #include <cstring>
 
 TeFiEd::TeFiEd(const char* filename) {
-	m_filename = filename;
+	//Create a char array at m_filename the size of the input string.
+	m_filename = new char[ strlen(filename) + 1 ];
+	
+	//Copy the input string to the new char array at m_filename
+	strcpy(m_filename, filename);
 }
 
 TeFiEd::TeFiEd(const std::string filename) {
-	//NOTE: this method could be a memory leak area, but this consturctor is
-	//called once per object, and otheriwse would store the string in stack.
-	//Keep an eye on this for leaks, but it should be safe.
-	//Create a char array string of the right size on the heap.
-	char *strPtr = new char[filename.size() + 1];
+	//Create a char array at m_filename the size of the input string.
+	m_filename = new char[ filename.size() + 1 ];
 
-	//Copy contents from string to the char array
-	strcpy(strPtr, filename.c_str());
-	
-	//Set the pointer to the heap pointer.
-	m_filename = strPtr;
+	//Copy the input string to the new char array at m_filename
+	strcpy(m_filename, filename.c_str());
 } 
 
 //Destructor cleans up the vector and oher RAM garbage disposal.
 TeFiEd::~TeFiEd() {	
+	delete[] m_filename;
+	
 	if(m_ramfile.size() != 0) {
 		this->flush();
 	}

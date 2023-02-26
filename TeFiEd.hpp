@@ -8,8 +8,8 @@
 * Please see the github page for this project: https://github.com/ADBeta/TeFiEd
 * 
 * (c) ADBeta 
-* v5.1.0
-* Last Modified 25 Feb 2023
+* v5.2.0
+* Last Modified 26 Feb 2023
 *******************************************************************************/
 
 #ifndef TeFiEd_H
@@ -138,7 +138,7 @@ class TeFiEd {
 	bool verbose = false;
 	
 	/** File Variables ********************************************************/
-	const char* m_filename; //Filename as char array
+	char* m_filename; //Filename as char array
 	std::fstream m_file; //fsteam object of file
 	std::vector<std::string> m_ramfile; //File RAM vector	
 	
